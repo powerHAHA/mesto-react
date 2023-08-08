@@ -1,7 +1,6 @@
 import React from "react";
 export const PopupWithForm = (props) => {
 	return (
-		<>
 			<div className={props.isOpen ? `popup popup_opened popup_type_${props.name}` : `popup popup_type_${props.name}`}>
 				<div className="popup__container">
 					<button
@@ -18,6 +17,5 @@ export const PopupWithForm = (props) => {
 					</form>
 				</div>
 			</div >
-		</>
 	)
 }
