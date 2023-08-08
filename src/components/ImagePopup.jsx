@@ -1,7 +1,6 @@
 import React from "react";
 export const ImagePopup = (props) => {
 	return (
-		<>
 			<div className={props.card.name ? 'popup popup_opened popup_type_view-img' : 'popup popup_type_view-img'}>
 				<div className="popup__container popup__container_type_img">
 					<button
@@ -19,6 +18,5 @@ export const ImagePopup = (props) => {
 					</figure>
 				</div>
 			</div>
-		</>
 	)
 }

@@ -3,9 +3,9 @@ import { api } from '../utils/api';
 import { Card } from './Card';
 
 export const Main = (props) => {
-	const [userName, setUserName] = React.useState();
-	const [userDescription, setUserDescription] = React.useState();
-	const [userAvatar, setUserAvatar] = React.useState();
+	const [userName, setUserName] = React.useState("Ваше имя");
+	const [userDescription, setUserDescription] = React.useState('Род деятельности');
+	const [userAvatar, setUserAvatar] = React.useState(avatar);
 	const [cards, setCards] = React.useState([]);
 
 	React.useEffect(() => {
@@ -13,11 +13,11 @@ export const Main = (props) => {
 			setUserName(data.name);
 			setUserDescription(data.about);
 			setUserAvatar(data.avatar);
-		})
+		}).catch((err) => console.log(`При загрузке данных Пользователя возникла ошибка: ${err}`))
 
 		api.getCards().then((data) => {
 			setCards(data);
-		})
+		}).catch((err) => console.log(`При загрузке карточек с сервера возникла ошибка: ${err}`))
 	}, [])
 
 	return (
