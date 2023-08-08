@@ -5,7 +5,7 @@ import { Card } from './Card';
 export const Main = (props) => {
 	const [userName, setUserName] = React.useState("Ваше имя");
 	const [userDescription, setUserDescription] = React.useState('Род деятельности');
-	const [userAvatar, setUserAvatar] = React.useState(avatar);
+	const [userAvatar, setUserAvatar] = React.useState("");
 	const [cards, setCards] = React.useState([]);
 
 	React.useEffect(() => {
