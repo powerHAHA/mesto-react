@@ -1,57 +1,38 @@
 import React from 'react';
-import { api } from '../utils/api';
 import { Card } from './Card';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-export const Main = (props) => {
-	const [userName, setUserName] = React.useState("Ваше имя");
-	const [userDescription, setUserDescription] = React.useState('Род деятельности');
-	const [userAvatar, setUserAvatar] = React.useState("");
-	const [cards, setCards] = React.useState([]);
-
-	React.useEffect(() => {
-		api.getUserData().then((data) => {
-			setUserName(data.name);
-			setUserDescription(data.about);
-			setUserAvatar(data.avatar);
-		}).catch((err) => console.log(`При загрузке данных Пользователя возникла ошибка: ${err}`))
-
-		api.getCards().then((data) => {
-			setCards(data);
-		}).catch((err) => console.log(`При загрузке карточек с сервера возникла ошибка: ${err}`))
-	}, [])
-
+export const Main = ({ cards, onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardLike, onCardDelete }) => {
+	const currentUser = React.useContext(CurrentUserContext);
 	return (
 		<main className="content">
 			<section className="profile page__profile">
 				<div className="profile__info">
 					<div className="profile__avatar-container">
-						<img src={userAvatar} alt="Аватар" className="profile__avatar" />
+						<img src={currentUser.avatar} alt="Аватар" className="profile__avatar" />
 						<button
 							className="profile__button-avatar button"
 							type="button"
 							aria-label="Редактировать аватар"
-							onClick={props.onEditAvatar}>
-						</button>
+							onClick={onEditAvatar} />
 					</div>
 					<div className="profile__description">
 						<div className="profile__container">
-							<h1 className="profile__name">{userName}</h1>
+							<h1 className="profile__name">{currentUser.name}</h1>
 							<button
 								className="profile__button-edit button"
 								type="button"
 								aria-label="Редактировать профиль"
-								onClick={props.onEditProfile}>
-							</button>
+								onClick={onEditProfile} />
 						</div>
-						<p className="profile__job">{userDescription}</p>
+						<p className="profile__job">{currentUser.about}</p>
 					</div>
 				</div>
 				<button
 					className="profile__button-add button"
 					type="button"
 					aria-label="Добавить карточку"
-					onClick={props.onAddPlace}>
-				</button>
+					onClick={onAddPlace} />
 			</section>
 			<section className="elements page__elements">
 				<ul className="elements__items">
@@ -63,7 +44,12 @@ export const Main = (props) => {
 								name={card.name}
 								img={card.link}
 								likes={card.likes}
-								onCardClick={props.onCardClick} />
+								id={card._id}
+								ownerId={card.owner._id}
+								onCardClick={onCardClick}
+								onCardLike={onCardLike}
+								onCardDelete={onCardDelete}
+							/>
 						)
 					})}
 				</ul>
