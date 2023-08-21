@@ -1,8 +1,8 @@
 const apiOptions = {
-	url: 'https://mesto.nomoreparties.co/v1/cohort-70/',  
-	headers: {   
-	authorization: '94c10f33-d262-4a4c-9a4b-3d7349d0a01e',
-	'Content-Type': 'application/json'
+	url: 'https://mesto.nomoreparties.co/v1/cohort-70/',
+	headers: {
+		authorization: '94c10f33-d262-4a4c-9a4b-3d7349d0a01e',
+		'Content-Type': 'application/json'
 	}
 }
 

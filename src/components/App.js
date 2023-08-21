@@ -40,12 +40,12 @@ function App() {
 		const isLiked = likes.some(i => i._id === currentUser._id);
 		api.changeLikeCardStatus(id, isLiked).then((newCard) => {
 			setCards((cards) => cards.map((c) => c._id === id ? newCard : c));
-		}).catch((err) => console.log(`При постановке/снятия лайка возникла ошибка: ${err}`))
+		})//.catch((err) => console.log(`При постановке/снятия лайка возникла ошибка: ${err}`))
 	}
 	function handleCardDelete({ id }) {
 		api.deleteCard(id).then(() => {
 			setCards((cards) => cards.filter((c) => c._id !== id));
-		}).catch((err) => console.log(`При удалении карточки возникла ошибка: ${err}`))
+		})//.catch((err) => console.log(`При удалении карточки возникла ошибка: ${err}`))
 	}
 	function handleSubmit(request) {
 		setIsLoading(true);
